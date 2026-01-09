@@ -415,7 +415,7 @@ export const fallbackConfig = {
   "recruitment_message": "**HICA BNCOE | Recruitment – Season 2026**\n\nWe are recruiting passionate students who are ready to **commit, contribute, and grow** — not just add a line to their resume.\n\n✨ If you want to learn, lead, and be part of something impactful, this is your chance!\n\n🔗 **Apply Now:**\n[https://forms.gle/RJVQ1GSH3itA6B2F7](https://forms.gle/RJVQ1GSH3itA6B2F7)\n\n🗓 **Last Date to Apply:** *11 January 2026*\n\n📞 Shortlisted candidates will be contacted for interviews.\n\nLet’s build the future of **HICA @ BNCOE Pusad** together! 🚀\n",
   "team_intro_video_url": "https://res.cloudinary.com/dty4b2yj1/video/upload/v1767887779/Video_Project_2_1_mf6dpq.mp4",
   "site_name": "HICA",
-  "site_description": "About HICA...",
+  "site_description": "HICA is a community focused on hands-on learning, collaboration, and real-world impact. Through events, workshops, and mentorship, we help students and members grow technical, creative, and leadership skills.",
   "contact_email": "hicabncoe@gmail.com",
   "social_links": {
     "facebook": "",

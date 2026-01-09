@@ -131,7 +131,7 @@ export default function Team() {
         )}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
-          {data?.map((member, index) => (
+          {data?.sort((a, b) => (a.order || 0) - (b.order || 0)).map((member, index) => (
             <div
               key={member._id}
               className="group relative bg-gradient-to-br from-purple-900/30 to-cyan-900/30 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-purple-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20 animate-fade-in-up"

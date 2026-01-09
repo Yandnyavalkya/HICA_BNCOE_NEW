@@ -12,7 +12,17 @@ router.get('/', async (req, res) => {
       config = new SiteConfig();
       await config.save();
     }
-    res.json([config]);
+    
+    // Convert to plain object and add site_description alias for about_text
+    const configObj = config.toObject();
+    if (configObj.about_text && !configObj.site_description) {
+      configObj.site_description = configObj.about_text;
+    }
+    if (configObj.site_title && !configObj.site_name) {
+      configObj.site_name = configObj.site_title;
+    }
+    
+    res.json([configObj]);
   } catch (error) {
     console.error('Error fetching site config:', error);
     res.status(500).json({ detail: 'Internal server error' });
@@ -44,9 +54,28 @@ router.put('/:config_id', authenticateToken, async (req, res) => {
       return res.status(404).json({ detail: 'Config not found' });
     }
 
+    // Map site_description to about_text for saving
+    if (req.body.site_description !== undefined && !req.body.about_text) {
+      req.body.about_text = req.body.site_description;
+    }
+    // Map site_name to site_title for saving
+    if (req.body.site_name !== undefined && !req.body.site_title) {
+      req.body.site_title = req.body.site_name;
+    }
+
     Object.assign(config, req.body);
     await config.save();
-    res.json(config);
+    
+    // Return with aliases for frontend compatibility
+    const configObj = config.toObject();
+    if (configObj.about_text && !configObj.site_description) {
+      configObj.site_description = configObj.about_text;
+    }
+    if (configObj.site_title && !configObj.site_name) {
+      configObj.site_name = configObj.site_title;
+    }
+    
+    res.json(configObj);
   } catch (error) {
     console.error('Error updating site config:', error);
     res.status(500).json({ detail: 'Internal server error' });

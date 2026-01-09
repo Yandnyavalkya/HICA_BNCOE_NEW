@@ -63,8 +63,8 @@ export default function ConfigManager() {
       }
       
       reset({
-        site_name: config.site_name || '',
-        site_description: config.site_description || '',
+        site_name: config.site_name || config.site_title || '',
+        site_description: config.site_description || config.about_text || '',
         contact_email: config.contact_email || '',
         hero_title: config.hero_title || '',
         hero_subtitle: config.hero_subtitle || '',
