@@ -8,6 +8,7 @@ type TeamMember = {
   role: string;
   bio?: string;
   image_url?: string;
+  order?: number;
   social_links?: {
     linkedin?: string;
     github?: string;
