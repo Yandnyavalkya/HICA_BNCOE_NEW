@@ -4,6 +4,7 @@ services:
     env: node
     buildCommand: npm install && npm run build
     startCommand: npx serve -s dist -l 10000
-    envVars:
-      - key: VITE_API_BASE_URL
-        sync: false
+    # Note: VITE_API_BASE_URL is optional - frontend works without backend using fallback data
+    # envVars:
+    #   - key: VITE_API_BASE_URL
+    #     sync: false
