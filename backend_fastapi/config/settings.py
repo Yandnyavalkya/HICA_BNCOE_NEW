@@ -19,7 +19,7 @@ def get_jwt_secret() -> str:
 
 
 def get_jwt_algo() -> str:
-    return os.getenv("JWT_ALGO", "HS256")
+    return os.getenv("JWT_ALGO") or os.getenv("JWT_ALGORITHM", "HS256")
 
 
 def get_jwt_expire_minutes() -> int:
@@ -37,11 +37,11 @@ def get_frontend_origins() -> list:
 def get_smtp_settings():
     """SMTP settings for sending event notification emails."""
     return {
-        "host": os.getenv("SMTP_HOST", ""),
+        "host": os.getenv("SMTP_HOST") or os.getenv("SMTP_SERVER", ""),
         "port": int(os.getenv("SMTP_PORT", "587")),
-        "user": os.getenv("SMTP_USER", ""),
+        "user": os.getenv("SMTP_USER") or os.getenv("SMTP_USERNAME", ""),
         "password": os.getenv("SMTP_PASSWORD", ""),
-        "from_email": os.getenv("EMAIL_FROM", "noreply@hica.com"),
+        "from_email": os.getenv("EMAIL_FROM") or os.getenv("FROM_EMAIL", "noreply@hica.com"),
         "use_tls": os.getenv("SMTP_USE_TLS", "true").lower() == "true",
     }
 
