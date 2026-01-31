@@ -1,40 +1,60 @@
+# HICA - Render Blueprint
+# Backend: FastAPI (Python). Frontend: Static (Vite/React).
+# Set env vars in Render Dashboard for each service.
+
 services:
-  # Backend API Service
+  # Backend API (FastAPI)
   - type: web
-    name: hica-backend
-    env: node
-    buildCommand: cd backend && npm install
-    startCommand: cd backend && npm start
+    name: hica-api
+    env: python
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:$PORT
+    rootDir: backend_fastapi
     envVars:
-      - key: NODE_ENV
-        value: production
-      - key: PORT
-        value: 10000
+      - key: PYTHON_VERSION
+        value: "3.11.0"
       - key: MONGODB_URI
         sync: false
+      - key: MONGODB_DB_NAME
+        value: hica
       - key: JWT_SECRET
         sync: false
+      - key: JWT_ALGO
+        value: HS256
       - key: JWT_EXPIRE_MINUTES
-        value: 1440
-      - key: CLOUDINARY_CLOUD_NAME
-        sync: false
-      - key: CLOUDINARY_API_KEY
-        sync: false
-      - key: CLOUDINARY_API_SECRET
-        sync: false
+        value: "1440"
       - key: FRONTEND_ORIGINS
         sync: false
       - key: ADMIN_EMAIL
         sync: false
       - key: ADMIN_PASSWORD
         sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
 
-  # Frontend Service
+  # Frontend (static site)
   - type: web
-    name: hica-frontend
+    name: hica-web
     env: node
-    buildCommand: cd frontend && npm install && npm run build
-    startCommand: cd frontend && npx serve -s dist -l 10000
+    region: oregon
+    buildCommand: npm install && npm run build
+    startCommand: npx serve -s dist -l $PORT
+    rootDir: frontend
     envVars:
       - key: VITE_API_BASE_URL
         sync: false

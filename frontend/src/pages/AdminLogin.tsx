@@ -21,11 +21,15 @@ export default function AdminLogin() {
     params.append('username', values.email);
     params.append('password', values.password);
     try {
-      const res = await api.post<{ access_token: string }>('/auth/login', params, {
+      const res = await api.post<{ access_token: string; role: string }>('/auth/login', params, {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       });
       setAuthToken(res.data.access_token);
-      navigate('/admin');
+      if (res.data.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/', { state: { message: 'You are subscribed to event updates at your email.' } });
+      }
     } catch (err: any) {
       const errorMessage = err.response?.data?.detail || 'Login failed. Please check your credentials.';
       setError(errorMessage);

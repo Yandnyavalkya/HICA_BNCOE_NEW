@@ -7,6 +7,7 @@ node_modules/
 .env.local
 .env.*.local
 backend/.env
+backend_fastapi/.env
 frontend/.env
 
 # Build outputs
@@ -44,6 +45,9 @@ __pycache__/
 venv/
 env/
 ENV/
+
+# Vercel (not used for Render)
+.vercel/
 
 # Temporary files
 *.tmp

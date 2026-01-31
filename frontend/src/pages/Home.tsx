@@ -106,6 +106,16 @@ export default function Home() {
     }
   }, [events, config]);
 
+  // Active/upcoming event for hero (next upcoming, or most recent if all past)
+  const activeEvent = (() => {
+    if (!events || events.length === 0) return null;
+    const sorted = [...events].sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    );
+    const next = sorted.find((e) => new Date(e.date) > new Date());
+    return next ?? sorted[sorted.length - 1];
+  })();
+
   // Show recruitment notice if enabled
   if (config?.show_recruitment && config.recruitment_title) {
     return (
@@ -163,38 +173,74 @@ export default function Home() {
     );
   }
 
-  // Default event display
-  const heroTitle = config?.hero_title || "HICA's First Event";
-  const heroSubtitle = config?.hero_subtitle || 
-    "Join us for our first Technical event at HICA BNCOE. Experience an exciting gathering of tech enthusiasts!";
+  // Hero content: use active event details when available, else config/defaults
+  const heroTitle = activeEvent?.title || config?.hero_title || 'Welcome to HICA';
+  const eventDateStr = activeEvent?.date
+    ? new Date(activeEvent.date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })
+    : null;
+  const eventLocation = activeEvent?.location || null;
+  const fullDescription = activeEvent?.description
+    || config?.hero_subtitle
+    || 'Empowering innovation and collaboration.';
+  const descriptionTeaserLength = 220;
+  const showTeaser = fullDescription.length > descriptionTeaserLength;
+  const descriptionTeaser = showTeaser
+    ? fullDescription.slice(0, descriptionTeaserLength).trim() + '…'
+    : fullDescription;
+  const registrationLink = activeEvent?.registration_link || 'https://bloggersconvision.com/hica/';
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-4 py-20">
-      <div className="text-center space-y-8 max-w-4xl mx-auto animate-fade-in">
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-wider bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent animate-gradient-shift">
+    <section className="min-h-screen flex flex-col items-center justify-center px-4 py-16 sm:py-20">
+      <div className="text-center max-w-3xl mx-auto animate-fade-in space-y-10 sm:space-y-12">
+        {activeEvent && (
+          <span className="inline-block text-xs sm:text-sm font-medium tracking-widest uppercase text-cyan-400/90 border border-cyan-400/30 rounded-full px-4 py-1.5">
+            Upcoming Event
+          </span>
+        )}
+
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold uppercase tracking-wide bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent animate-gradient-shift leading-tight">
           {heroTitle}
         </h1>
-        
+
+        {(eventDateStr || eventLocation) && (
+          <p className="text-sm sm:text-base text-white/70 flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+            {eventDateStr && <span>{eventDateStr}</span>}
+            {eventDateStr && eventLocation && <span className="text-white/50">·</span>}
+            {eventLocation && <span>{eventLocation}</span>}
+          </p>
+        )}
+
         <div className="relative inline-block">
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-cyan-500/20 blur-2xl rounded-2xl"></div>
-          <div className="relative px-8 py-6 bg-black/50 backdrop-blur-sm border-2 border-white/20 rounded-2xl">
-            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white animate-countdown">
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-cyan-500/20 blur-2xl rounded-2xl" />
+          <div className="relative px-8 py-5 sm:py-6 bg-black/50 backdrop-blur-sm border border-white/20 rounded-2xl">
+            <div className="text-xs sm:text-sm text-purple-300/90 mb-1">Time remaining</div>
+            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tabular-nums animate-countdown">
               {timeLeft || 'Loading...'}
             </div>
           </div>
         </div>
 
-        <p className="text-lg sm:text-xl lg:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-          {heroSubtitle}
-        </p>
+        <div className="text-left rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm px-5 sm:px-6 py-5 sm:py-6">
+          <p className="text-white/90 text-base sm:text-lg leading-relaxed whitespace-pre-line">
+            {descriptionTeaser}
+          </p>
+          {showTeaser && (
+            <a
+              href="/events"
+              className="inline-block mt-3 text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
+            >
+              Read full details on Events →
+            </a>
+          )}
+        </div>
 
         <a
-          href="https://bloggersconvision.com/hica/"
+          href={registrationLink}
           target="_blank"
           rel="noreferrer"
-          className="inline-block px-8 py-4 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 rounded-lg font-bold text-white text-lg hover:from-purple-500 hover:via-pink-500 hover:to-cyan-500 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50"
+          className="inline-block px-8 py-4 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 rounded-xl font-bold text-white text-lg hover:from-purple-500 hover:via-pink-500 hover:to-cyan-500 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:ring-offset-2 focus:ring-offset-transparent"
         >
-          Register Now
+          Register for Event
         </a>
       </div>
     </section>
