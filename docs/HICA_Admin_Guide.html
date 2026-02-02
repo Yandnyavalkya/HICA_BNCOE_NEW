@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HICA Website – Admin User Guide</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #222;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px 32px 48px;
+      background: #fff;
+    }
+    @media print {
+      body { padding: 16px 24px; }
+      .no-print { display: none !important; }
+      h1, h2, h3 { page-break-after: avoid; }
+      section { page-break-inside: avoid; }
+    }
+    h1 {
+      font-size: 1.75rem;
+      color: #5a2d82;
+      border-bottom: 2px solid #993fea;
+      padding-bottom: 8px;
+      margin-top: 0;
+    }
+    h2 {
+      font-size: 1.25rem;
+      color: #333;
+      margin-top: 28px;
+      margin-bottom: 12px;
+    }
+    h3 { font-size: 1.05rem; color: #444; margin-top: 16px; margin-bottom: 8px; }
+    p { margin: 0 0 10px; }
+    ul, ol { margin: 0 0 12px; padding-left: 24px; }
+    li { margin-bottom: 6px; }
+    .tip {
+      background: #f0f4ff;
+      border-left: 4px solid #993fea;
+      padding: 12px 16px;
+      margin: 16px 0;
+      font-size: 0.95rem;
+    }
+    .step { font-weight: 600; color: #5a2d82; }
+    .menu-path { font-family: monospace; background: #f5f5f5; padding: 2px 6px; border-radius: 4px; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem; }
+    th, td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; }
+    th { background: #f5f5f5; font-weight: 600; }
+    .pdf-note {
+      background: #fff8e6;
+      border: 1px solid #e6c200;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+      border-radius: 6px;
+    }
+    .pdf-note strong { display: block; margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+  <div class="pdf-note no-print">
+    <strong>Save as PDF</strong>
+    Open this file in a browser (Chrome, Edge, etc.), then press <kbd>Ctrl</kbd>+<kbd>P</kbd> (or <kbd>Cmd</kbd>+<kbd>P</kbd> on Mac), choose <strong>Save as PDF</strong>, and click Save.
+  </div>
+
+  <h1>HICA Website – Admin User Guide</h1>
+  <p><strong>For non-technical admins:</strong> This guide explains how to manage the HICA website (events, team, gallery, and site settings) using the admin panel. No coding required.</p>
+
+  <!-- 1. LOGGING IN -->
+  <section>
+    <h2>1. Logging in to the admin panel</h2>
+    <ol>
+      <li>Open the HICA website in your browser (e.g. the link provided by your team).</li>
+      <li>Click <strong>Admin</strong> in the top menu (or go to the login page directly if you have the link).</li>
+      <li>Enter your <strong>admin email</strong> and <strong>password</strong> (given to you by the site administrator).</li>
+      <li>Click <strong>Login</strong>.</li>
+    </ol>
+    <div class="tip">
+      <strong>Tip:</strong> If you see a message like “Connection issue… try again in a few seconds,” wait a moment and click Login again. The server may be waking up.
+    </div>
+    <p>After a successful login, you will see the <strong>Admin Dashboard</strong>.</p>
+  </section>
+
+  <!-- 2. DASHBOARD -->
+  <section>
+    <h2>2. Admin Dashboard</h2>
+    <p>The dashboard is your starting point. It shows:</p>
+    <ul>
+      <li>Number of team members, events, and gallery images.</li>
+      <li>Shortcuts to manage each section: <strong>Team</strong>, <strong>Events</strong>, <strong>Gallery</strong>, and <strong>Config</strong>.</li>
+    </ul>
+    <p>Use the links or the left-side menu to go to the section you want to edit.</p>
+  </section>
+
+  <!-- 3. TEAM -->
+  <section>
+    <h2>3. Managing the Team</h2>
+    <p>From the dashboard, open <span class="menu-path">Team</span> to add, edit, or remove team members (names, roles, photos, and social links).</p>
+
+    <h3>Adding a new team member</h3>
+    <ol>
+      <li>Go to <strong>Team</strong> from the dashboard or menu.</li>
+      <li>Fill in the form:
+        <ul>
+          <li><strong>Name</strong> – Full name.</li>
+          <li><strong>Role</strong> – e.g. “President”, “Web Dev Lead”, “Faculty Advisor”.</li>
+          <li><strong>Bio</strong> – Short description (optional).</li>
+          <li><strong>Image URL</strong> – Link to the person’s photo (optional). If you have a file, ask your tech person to upload it and give you the link.</li>
+          <li><strong>Order</strong> – Number to control the order on the page (e.g. 0, 1, 2). Lower numbers can appear first.</li>
+          <li><strong>Social links</strong> – LinkedIn, GitHub, Twitter, Instagram URLs (optional).</li>
+        </ul>
+      </li>
+      <li>Click <strong>Create</strong> (or <strong>Add</strong>).</li>
+    </ol>
+
+    <h3>Editing a team member</h3>
+    <ol>
+      <li>In the Team list, find the member and click <strong>Edit</strong> (or similar).</li>
+      <li>Change the fields you need.</li>
+      <li>Click <strong>Update</strong> (or <strong>Save</strong>).</li>
+    </ol>
+
+    <h3>Removing a team member</h3>
+    <ol>
+      <li>Find the member in the list and click <strong>Delete</strong>.</li>
+      <li>Confirm when asked. The member will be removed from the website.</li>
+    </ol>
+  </section>
+
+  <!-- 4. EVENTS -->
+  <section>
+    <h2>4. Managing Events</h2>
+    <p>From the dashboard, open <span class="menu-path">Events</span> to add, edit, or remove events. Events appear on the Home page and on the Events page.</p>
+
+    <h3>Adding a new event</h3>
+    <ol>
+      <li>Go to <strong>Events</strong> from the dashboard or menu.</li>
+      <li>Fill in the form:
+        <ul>
+          <li><strong>Title</strong> – Event name (e.g. “IDEATHON”, “HICA Inauguration”).</li>
+          <li><strong>Description</strong> – Details: date, structure, registration info, etc.</li>
+          <li><strong>Date &amp; Time</strong> – When the event is held. Use the date/time picker.</li>
+          <li><strong>Location</strong> – e.g. “BNCOE Campus” (optional).</li>
+          <li><strong>Image URL</strong> – Link to an event image (optional).</li>
+          <li><strong>Registration link</strong> – URL of the form or page where people register (e.g. Google Form link).</li>
+          <li><strong>Event category</strong> – Short identifier (e.g. “ideathon-2026”) (optional).</li>
+        </ul>
+      </li>
+      <li>Click <strong>Create</strong> (or <strong>Add</strong>).</li>
+    </ol>
+    <div class="tip">
+      <strong>Tip:</strong> The next upcoming event (by date) is shown on the Home page hero section, with its title, description teaser, countdown, and “Register for Event” button (using the registration link you entered).
+    </div>
+
+    <h3>Editing an event</h3>
+    <ol>
+      <li>In the Events list, click <strong>Edit</strong> on the event.</li>
+      <li>Change the fields you need.</li>
+      <li>Click <strong>Update</strong> (or <strong>Save</strong>).</li>
+    </ol>
+
+    <h3>Deleting an event</h3>
+    <ol>
+      <li>Find the event and click <strong>Delete</strong>.</li>
+      <li>Confirm when asked. The event will be removed from the website.</li>
+    </ol>
+  </section>
+
+  <!-- 5. GALLERY -->
+  <section>
+    <h2>5. Managing the Gallery</h2>
+    <p>From the dashboard, open <span class="menu-path">Gallery</span> to add, edit, or remove images. These appear on the Gallery page.</p>
+
+    <h3>Adding a new image</h3>
+    <ol>
+      <li>Go to <strong>Gallery</strong> from the dashboard or menu.</li>
+      <li>Either:
+        <ul>
+          <li><strong>Upload a file</strong> – Click “Choose file” (or similar), select an image from your computer, then fill in Title, Description, Category, Event category if you want.</li>
+          <li><strong>Use an image URL</strong> – If you have a link to the image (e.g. from Cloudinary or another host), enter it in the Image URL field and fill other fields as needed.</li>
+        </ul>
+      </li>
+      <li>Click <strong>Create</strong> or <strong>Upload</strong>.</li>
+    </ol>
+
+    <h3>Editing or deleting an image</h3>
+    <p>In the gallery list, use <strong>Edit</strong> to change title/description/category, or <strong>Delete</strong> to remove the image from the website.</p>
+  </section>
+
+  <!-- 6. CONFIG -->
+  <section>
+    <h2>6. Managing Site Config (Settings)</h2>
+    <p>From the dashboard, open <span class="menu-path">Config</span> to change site-wide text and options (hero, about, contact, recruitment, social links). There is usually <strong>one</strong> config; you edit it, not create a new one.</p>
+
+    <h3>Common fields</h3>
+    <table>
+      <tr><th>Field</th><th>What it does</th></tr>
+      <tr><td>Site name</td><td>Name of the site (e.g. “HICA”).</td></tr>
+      <tr><td>Site description / About text</td><td>Text shown on the About page and used for “about” the site.</td></tr>
+      <tr><td>Contact email</td><td>Email shown for contact (e.g. in footer or About).</td></tr>
+      <tr><td>Hero title</td><td>Main headline on the Home page when no event is set (fallback).</td></tr>
+      <tr><td>Hero subtitle</td><td>Subtitle under the hero (fallback).</td></tr>
+      <tr><td>Team intro video URL</td><td>Link to a video shown on the Team page (optional).</td></tr>
+      <tr><td>Social links</td><td>Facebook, Twitter, Instagram, LinkedIn, GitHub, YouTube URLs for the site.</td></tr>
+    </table>
+
+    <h3>Recruitment section</h3>
+    <p>If your site shows a recruitment notice on the Home page:</p>
+    <ul>
+      <li><strong>Show recruitment</strong> – Turn this on to show the recruitment block.</li>
+      <li><strong>Recruitment title / subtitle</strong> – Headline and short text.</li>
+      <li><strong>Recruitment form URL</strong> – Link to the application form (e.g. Google Form).</li>
+      <li><strong>Recruitment deadline</strong> – Last date/time to apply.</li>
+      <li><strong>Recruitment message</strong> – Longer text (instructions, criteria, etc.).</li>
+    </ul>
+    <p>After changing any field, click <strong>Update</strong> or <strong>Save</strong> so the changes go live.</p>
+  </section>
+
+  <!-- 7. TIPS -->
+  <section>
+    <h2>7. General tips</h2>
+    <ul>
+      <li><strong>Saving:</strong> Always click the Save / Update / Create button after filling or changing a form. If you leave the page without saving, changes are lost.</li>
+      <li><strong>Connection messages:</strong> If you see “Connection issue” or “check credentials” right after opening the site, wait a few seconds and try again. The server may be starting up.</li>
+      <li><strong>Back button:</strong> If you had the admin panel open and then went to the main site, using the browser back button can take you back to the dashboard. You can also use the menu to go to Admin again and log in if needed.</li>
+      <li><strong>Images:</strong> For team and events, you can use image URLs (links). For gallery, you can upload a file or paste an image URL. If uploads fail, ask your tech person to check Cloudinary (or similar) setup.</li>
+      <li><strong>Registration links:</strong> For events, paste the full URL of the form (e.g. from Google Forms). The “Register for Event” button on the Home page will use this link for the next upcoming event.</li>
+    </ul>
+  </section>
+
+  <!-- QUICK REFERENCE -->
+  <section>
+    <h2>Quick reference – Where to do what</h2>
+    <table>
+      <tr><th>What you want to do</th><th>Go to</th></tr>
+      <tr><td>Log in</td><td>Admin → Login page (email + password)</td></tr>
+      <tr><td>See overview</td><td>Admin Dashboard (after login)</td></tr>
+      <tr><td>Add/edit/remove team members</td><td>Team</td></tr>
+      <tr><td>Add/edit/remove events</td><td>Events</td></tr>
+      <tr><td>Add/edit/remove gallery images</td><td>Gallery</td></tr>
+      <tr><td>Change site name, about text, contact, hero, recruitment, social links</td><td>Config</td></tr>
+    </table>
+  </section>
+
+  <p style="margin-top: 32px; font-size: 0.9rem; color: #666;">HICA Admin Guide – For non-technical admins. No coding required.</p>
+
+</body>
+</html>
